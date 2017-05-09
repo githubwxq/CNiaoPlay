@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/group_1">
+        <item
+            android:icon="@drawable/ic_apps_white_24dp"
+            android:title="@string/app_and_game" />
+    </group>
+
+    <group android:id="@+id/group_2">
+        <item
+            android:icon="@drawable/ic_movie_white_24dp"
+            android:title="@string/movie" />
+        <item
+            android:icon="@drawable/ic_library_music_white_24dp"
+            android:title="@string/music" />
+        <item
+            android:icon="@drawable/ic_library_books_white_24dp"
+            android:title="@string/book" />
+        <item
+            android:icon="@drawable/ic_fiber_new_white_24dp"
+            android:title="@string/newsstand" />
+    </group>
+
+    <group android:id="@+id/group_3">
+        <item
+            android:icon="@drawable/ic_update_white_24dp"
+            android:title="@string/update" />
+        <item
+            android:icon="@drawable/ic_message_white_24dp"
+            android:title="@string/message" />
+        <item
+            android:icon="@drawable/ic_settings_white_24dp"
+            android:title="@string/settings" />
+    </group>
+
+    <item android:title="帮助和反馈" />
+    <item android:title="关于" />
+
+</menu>

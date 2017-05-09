@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">菜鸟市场</string>
+    <string name="leak_canary_display_activity_label">菜鸟市场</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="click_login">点击登录</string>
+    <string name="app_and_game">应用和游戏</string>
+    <string name="movie">影视</string>
+    <string name="music">音乐</string>
+    <string name="book">图书</string>
+    <string name="newsstand">报亭</string>
+    <string name="update">更新</string>
+    <string name="message">消息</string>
+    <string name="settings">设置</string>
+    <string name="recommend">推荐</string>
+    <string name="rank">排行</string>
+    <string name="category">分类</string>
+    <string name="download">下载</string>
+
+</resources>

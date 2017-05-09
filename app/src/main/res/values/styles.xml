@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowBackground">@color/def_background</item>
+    </style>
+
+    <style name="CollapseTheme" parent="@style/AppTheme"></style>
+
+    <style name="NavItemText">
+        <item name="android:textColor">@color/def_text_black</item>
+    </style>
+
+
+</resources>
