@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/CardViewStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_small">
+
+        <TextView
+            android:id="@+id/tv_pos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_small"
+            android:text="1."
+            android:textColor="@color/def_text_black"
+            android:textSize="@dimen/text_size_normal"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/empty_photo"
+            android:transitionName="app" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="Sky Force Reloadded"
+                android:textColor="@color/def_text_black"
+                android:textSize="@dimen/text_size_small"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_publisher_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:singleLine="true"
+                android:text="Infinite Dreams"
+                android:textColor="@color/def_text_light"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/tv_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:text="200MB"
+                android:textColor="@color/def_text_light"
+                android:textSize="@dimen/text_size_small" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="@dimen/margin_tiny"
+            android:background="@drawable/selector_btn_style_green"
+            android:text="@string/download"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_small" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

@@ -2,7 +2,7 @@ package com.chhd.per_library.ui.base;
 
 import android.view.View;
 
-import org.xutils.x;
+import butterknife.ButterKnife;
 
 /**
  * Created by CWQ on 2017/3/26.
@@ -11,7 +11,7 @@ import org.xutils.x;
 public class BaseHolder {
 
     public BaseHolder(View itemView) {
-        x.view().inject(this, itemView);
+        ButterKnife.bind(this, itemView);
     }
 
 }

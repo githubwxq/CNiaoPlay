@@ -7,4 +7,6 @@ package com.chhd.cniaoplay.global;
 public interface Constant {
 
     String TAG = "debug_Logger";
+
+    int SPACE_FOR_APP = 8;
 }

@@ -4,14 +4,16 @@
 
     <!-- APP 开始 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- APP 结束 -->
 
-    <!-- Sketch 开始 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <!-- Sketch 结束 -->
 
+    <!-- Sketch 开始 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Sketch 结束 -->
     <application
         android:name=".global.App"
         android:allowBackup="true"
@@ -29,6 +31,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.SettingsActivity" />
+        <activity android:name=".ui.activity.CategoryAppActivity" />
+        <activity
+            android:name=".ui.activity.AppDetailActivity"
+            android:theme="@style/CollapseTheme"></activity>
     </application>
 
 </manifest>

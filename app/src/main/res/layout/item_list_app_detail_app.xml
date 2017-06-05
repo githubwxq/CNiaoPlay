@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="75dp"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_tiny">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/empty_photo" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:ellipsize="end"
+        android:lines="2"
+        android:maxLines="2"
+        android:text="今日头条极速版"
+        android:textColor="@color/def_text_black"
+        android:textSize="@dimen/text_size_small"
+        android:textStyle="bold" />
+
+</LinearLayout>

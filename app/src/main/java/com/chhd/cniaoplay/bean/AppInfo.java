@@ -1,10 +1,13 @@
 package com.chhd.cniaoplay.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by CWQ on 2017/5/8.
  */
 
-public class AppInfo {
+public class AppInfo implements Parcelable {
 
 
     /**
@@ -370,4 +373,104 @@ public class AppInfo {
     public void setVideoId(int videoId) {
         this.videoId = videoId;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.adType);
+        dest.writeInt(this.addTime);
+        dest.writeInt(this.ads);
+        dest.writeInt(this.apkSize);
+        dest.writeInt(this.appendSize);
+        dest.writeString(this.briefShow);
+        dest.writeByte(this.briefUseIntro ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.developerId);
+        dest.writeInt(this.diffFileSize);
+        dest.writeString(this.displayName);
+        dest.writeByte(this.favorite ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.fitness);
+        dest.writeInt(this.grantCode);
+        dest.writeByte(this.hasSameDevApp ? (byte) 1 : (byte) 0);
+        dest.writeString(this.icon);
+        dest.writeInt(this.id);
+        dest.writeByte(this.isFavorite ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.level1CategoryId);
+        dest.writeString(this.level1CategoryName);
+        dest.writeInt(this.level2CategoryId);
+        dest.writeString(this.packageName);
+        dest.writeInt(this.position);
+        dest.writeString(this.publisherName);
+        dest.writeInt(this.rId);
+        dest.writeDouble(this.ratingScore);
+        dest.writeInt(this.ratingTotalCount);
+        dest.writeByte(this.relateAppHasMore ? (byte) 1 : (byte) 0);
+        dest.writeString(this.releaseKeyHash);
+        dest.writeByte(this.samDevAppHasMore ? (byte) 1 : (byte) 0);
+        dest.writeString(this.screenshot);
+        dest.writeString(this.source);
+        dest.writeInt(this.suitableType);
+        dest.writeLong(this.updateTime);
+        dest.writeInt(this.versionCode);
+        dest.writeString(this.versionName);
+        dest.writeInt(this.videoId);
+    }
+
+    public AppInfo() {
+    }
+
+    protected AppInfo(Parcel in) {
+        this.adType = in.readInt();
+        this.addTime = in.readInt();
+        this.ads = in.readInt();
+        this.apkSize = in.readInt();
+        this.appendSize = in.readInt();
+        this.briefShow = in.readString();
+        this.briefUseIntro = in.readByte() != 0;
+        this.developerId = in.readInt();
+        this.diffFileSize = in.readInt();
+        this.displayName = in.readString();
+        this.favorite = in.readByte() != 0;
+        this.fitness = in.readInt();
+        this.grantCode = in.readInt();
+        this.hasSameDevApp = in.readByte() != 0;
+        this.icon = in.readString();
+        this.id = in.readInt();
+        this.isFavorite = in.readByte() != 0;
+        this.level1CategoryId = in.readInt();
+        this.level1CategoryName = in.readString();
+        this.level2CategoryId = in.readInt();
+        this.packageName = in.readString();
+        this.position = in.readInt();
+        this.publisherName = in.readString();
+        this.rId = in.readInt();
+        this.ratingScore = in.readDouble();
+        this.ratingTotalCount = in.readInt();
+        this.relateAppHasMore = in.readByte() != 0;
+        this.releaseKeyHash = in.readString();
+        this.samDevAppHasMore = in.readByte() != 0;
+        this.screenshot = in.readString();
+        this.source = in.readString();
+        this.suitableType = in.readInt();
+        this.updateTime = in.readLong();
+        this.versionCode = in.readInt();
+        this.versionName = in.readString();
+        this.videoId = in.readInt();
+    }
+
+    public static final Parcelable.Creator<AppInfo> CREATOR = new Parcelable.Creator<AppInfo>() {
+        @Override
+        public AppInfo createFromParcel(Parcel source) {
+            return new AppInfo(source);
+        }
+
+        @Override
+        public AppInfo[] newArray(int size) {
+            return new AppInfo[size];
+        }
+    };
 }

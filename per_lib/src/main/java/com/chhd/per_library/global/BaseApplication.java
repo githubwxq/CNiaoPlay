@@ -3,8 +3,6 @@ package com.chhd.per_library.global;
 import android.app.Application;
 import android.content.Context;
 
-import org.xutils.x;
-
 /**
  * Created by CWQ on 2017/4/3.
  */
@@ -19,6 +17,5 @@ public class BaseApplication extends Application {
 
         context = this;
 
-        x.Ext.init(this);
     }
 }

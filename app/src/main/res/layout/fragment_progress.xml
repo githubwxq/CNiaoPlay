@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.chhd.cniaoplay.ui.base.ProgressFragment">
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clipToPadding="false"
+        android:padding="@dimen/margin_small"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/network_connect_fail"
+            android:textColor="@color/def_text_mid"
+            android:textSize="@dimen/text_size_normal" />
+
+        <Button
+            android:id="@+id/btn_retry"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="@dimen/margin_big"
+            android:background="@drawable/selector_btn_style_green"
+            android:text="@string/retry"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_small" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/no_more_data"
+        android:textColor="@color/def_text_mid"
+        android:textSize="@dimen/text_size_normal"
+        android:visibility="invisible" />
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

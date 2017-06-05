@@ -1,6 +1,9 @@
 package com.chhd.cniaoplay.global;
 
+import com.chhd.cniaoplay.bean.User;
+import com.chhd.cniaoplay.util.JsonUtils;
 import com.chhd.per_library.global.BaseApplication;
+import com.chhd.per_library.util.SpUtils;
 import com.orhanobut.logger.Logger;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -9,6 +12,9 @@ import com.squareup.leakcanary.LeakCanary;
  */
 
 public class App extends BaseApplication implements Constant {
+
+    public static String token = "";
+    public static User user;
 
     @Override
     public void onCreate() {
@@ -25,5 +31,25 @@ public class App extends BaseApplication implements Constant {
 
         Logger.init(TAG).methodOffset(1);
 
+        restoreLoginInfo();
+    }
+
+    public static void saveLoginInfo(String token, User user) {
+        App.token = token;
+        App.user = user;
+        SpUtils.putString("token", token);
+        SpUtils.putString("user", JsonUtils.toJSON(user));
+    }
+
+    public static void restoreLoginInfo() {
+        App.token = SpUtils.getString("token");
+        App.user = JsonUtils.fromJson(SpUtils.getString("user"), User.class);
+    }
+
+    public static void clearLoginInfo() {
+        token = null;
+        user = null;
+        SpUtils.putString("token", "");
+        SpUtils.putString("user", "");
     }
 }

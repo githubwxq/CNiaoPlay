@@ -17,7 +17,7 @@ import com.chhd.per_library.ui.base.BaseFragment;
 /**
  * 懒加载Fragment
  */
-public abstract class LazyFragment extends SimpleFragment {
+public abstract class LazyFragment extends ProgressFragment {
 
     private boolean hasLazyLoad;
     private boolean hasViewCreate;
@@ -32,8 +32,8 @@ public abstract class LazyFragment extends SimpleFragment {
     }
 
     @Override
-    public final void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         hasViewCreate = true;
         if (getUserVisibleHint() && !hasLazyLoad) {
             lazyLoad();

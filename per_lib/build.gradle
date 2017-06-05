@@ -31,5 +31,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:' + rootProject.ext.dependencies.supportLibs
     compile 'com.android.support:recyclerview-v7:' + rootProject.ext.dependencies.supportLibs
     testCompile 'junit:junit:4.12'
-    compile 'org.xutils:xutils:3.5.0'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }

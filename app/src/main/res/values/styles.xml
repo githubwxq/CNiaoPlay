@@ -16,5 +16,21 @@
         <item name="android:textColor">@color/def_text_black</item>
     </style>
 
+    <style name="VerScrollStyle">
+        <item name="android:scrollbarSize">2dp</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollbars">vertical</item>
+    </style>
+
+    <style name="HorScrollStyle">
+        <item name="android:scrollbarSize">2dp</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollbars">horizontal</item>
+    </style>
+
+    <style name="CardViewStyle">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
 
 </resources>
