@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">per_library</string>
+
+    <string name="loading">正在加載中...</string>
+    <string name="load_failed">加載失敗，請點我重試</string>
+    <string name="load_end">沒有更多數據</string>
+
+</resources>
