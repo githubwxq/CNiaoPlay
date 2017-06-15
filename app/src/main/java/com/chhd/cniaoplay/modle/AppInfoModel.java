@@ -4,7 +4,8 @@ import com.chhd.cniaoplay.bean.AppInfo;
 import com.chhd.cniaoplay.bean.BaseBean;
 import com.chhd.cniaoplay.bean.PageBean;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 /**
  * Created by CWQ on 2017/5/28.

@@ -5,7 +5,8 @@ import com.chhd.cniaoplay.bean.Category;
 
 import java.util.List;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 /**
  * Created by CWQ on 2017/6/1.

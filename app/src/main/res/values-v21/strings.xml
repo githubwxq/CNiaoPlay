@@ -43,5 +43,6 @@
     <string name="application_introduction">应用介绍</string>
     <string name="same_developers_app">相同开发者的应用</string>
     <string name="relate_app">相关应用</string>
+    <string name="uninstall">卸载</string>
 
 </resources>

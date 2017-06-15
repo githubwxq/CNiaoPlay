@@ -1,5 +1,6 @@
 package com.chhd.cniaoplay.http;
 
+import com.chhd.cniaoplay.bean.AppDownloadInfo;
 import com.chhd.cniaoplay.bean.AppInfo;
 import com.chhd.cniaoplay.bean.AppInfoDetail;
 import com.chhd.cniaoplay.bean.BaseBean;
@@ -7,16 +8,19 @@ import com.chhd.cniaoplay.bean.Category;
 import com.chhd.cniaoplay.bean.LoginBean;
 import com.chhd.cniaoplay.bean.PageBean;
 import com.chhd.cniaoplay.bean.RecommendBean;
-import com.chhd.cniaoplay.bean.request.LoginRequestBean;
+import com.chhd.cniaoplay.bean.SearchResult;
+import com.chhd.cniaoplay.bean.Subject;
+import com.chhd.cniaoplay.bean.SubjectDetail;
+import com.chhd.cniaoplay.bean.request.LoginRequestParam;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Observable;
 
 /**
  * Created by CWQ on 2017/5/6.
@@ -40,7 +44,7 @@ public interface ApiService {
     Observable<BaseBean<PageBean<AppInfo>>> getGameData(@Query("page") int page);
 
     @POST("login")
-    Observable<BaseBean<LoginBean>> login(@Body LoginRequestBean param);
+    Observable<BaseBean<LoginBean>> login(@Body LoginRequestParam param);
 
     @GET("category")
     Observable<BaseBean<List<Category>>> getCategoryData();
@@ -59,4 +63,23 @@ public interface ApiService {
 
     @GET("app/{id}")
     Observable<BaseBean<AppInfoDetail>> getAppDetailData(@Path("id") int id);
+
+    @GET("download/{id}")
+    Observable<BaseBean<AppDownloadInfo>> getAppDownloadInfoData(@Path("id") int id);
+
+    @GET("apps/updateinfo")
+    Observable<BaseBean<List<AppInfo>>> getAppUpdateInfoData
+            (@Query("packageName") String packageName, @Query("versionCode") String versionCode);
+
+    @GET("subject/hot")
+    Observable<BaseBean<PageBean<Subject>>> getSubjectData(@Query("page") int page);
+
+    @GET("subject/{id}")
+    Observable<BaseBean<SubjectDetail>> getSubjectDetailData(@Path("id") int id);
+
+    @GET("search/suggest")
+    Observable<BaseBean<List<String>>> getSearchSuggestData(@Query("keyword") String keyword);
+
+    @GET("search")
+    Observable<BaseBean<SearchResult>> getSearchResultData(@Query("keyword") String keyword);
 }

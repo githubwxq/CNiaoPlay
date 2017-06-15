@@ -5,7 +5,7 @@ import com.chhd.cniaoplay.bean.BaseBean;
 import com.chhd.cniaoplay.bean.PageBean;
 import com.chhd.cniaoplay.bean.RecommendBean;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 /**
  * Created by CWQ on 2017/5/28.

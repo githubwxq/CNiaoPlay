@@ -36,7 +36,13 @@
         <activity android:name=".ui.activity.CategoryAppActivity" />
         <activity
             android:name=".ui.activity.AppDetailActivity"
-            android:theme="@style/CollapseTheme"></activity>
+            android:theme="@style/CollapseTheme" />
+        <activity android:name=".ui.activity.DownloadManagerActivity" />
+        <activity android:name=".ui.activity.SubjectActivity" />
+        <activity
+            android:name=".ui.activity.SubjectDetailActivity"
+            android:theme="@style/CollapseTheme" />
+        <activity android:name=".ui.activity.SearchActivity"></activity>
     </application>
 
 </manifest>

@@ -9,34 +9,80 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.chhd.cniaoplay.R;
+import com.chhd.cniaoplay.bean.MessageEvent;
+import com.chhd.cniaoplay.global.Action;
 import com.chhd.cniaoplay.view.base.BaseView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public abstract class ProgressFragment extends SimpleFragment implements BaseView {
 
-    @BindView(R.id.root)
-    RelativeLayout root;
+    @BindView(R.id.loading)
+    View loading;
+    @BindView(R.id.empty)
+    View empty;
+    @BindView(R.id.error)
+    View error;
+
     @BindView(R.id.content)
     FrameLayout content;
 
+    private List<View> views = new ArrayList<>();
+
     protected View contentView;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+    public int getLayoutResID() {
+        return R.layout.fragment_progress;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        switch (event.getAction()) {
+            case Action.LOGIN:
+            case Action.LOGOUT:
+                retry();
+                break;
+        }
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        views.add(loading);
+        views.add(empty);
+        views.add(error);
+        views.add(content);
+
         contentView = LayoutInflater.from(getActivity()).inflate(getContentResId(), content, true);
 
         findViewById();
     }
+
+    public abstract int getContentResId();
 
     public abstract void findViewById();
 
@@ -52,13 +98,6 @@ public abstract class ProgressFragment extends SimpleFragment implements BaseVie
     protected void retry() {
         showLoadingView();
     }
-
-    @Override
-    public int getLayoutResID() {
-        return R.layout.fragment_progress;
-    }
-
-    public abstract int getContentResId();
 
     protected void showContentView() {
         showStatusView(R.id.content);
@@ -77,11 +116,11 @@ public abstract class ProgressFragment extends SimpleFragment implements BaseVie
     }
 
     protected void showStatusView(int viewId) {
-        for (int i = 0; i < root.getChildCount(); i++) {
-            if (root.getChildAt(i).getId() == viewId) {
-                root.getChildAt(i).setVisibility(View.VISIBLE);
+        for (View v : views) {
+            if (v.getId() == viewId) {
+                v.setVisibility(View.VISIBLE);
             } else {
-                root.getChildAt(i).setVisibility(View.INVISIBLE);
+                v.setVisibility(View.INVISIBLE);
             }
         }
     }

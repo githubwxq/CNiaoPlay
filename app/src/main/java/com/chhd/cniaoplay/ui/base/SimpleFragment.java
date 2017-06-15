@@ -1,13 +1,17 @@
 package com.chhd.cniaoplay.ui.base;
 
 import android.animation.ObjectAnimator;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
+import com.chhd.cniaoplay.global.App;
 import com.chhd.cniaoplay.global.Constant;
+import com.chhd.cniaoplay.inject.component.AppComponent;
 import com.chhd.cniaoplay.util.LoggerUtils;
 import com.chhd.per_library.ui.base.BaseFragment;
 import com.chhd.per_library.util.UiUtils;
@@ -35,6 +39,6 @@ public abstract class SimpleFragment extends BaseFragment implements Constant, V
                 downAnim.start();
                 break;
         }
-        return true;
+        return false;
     }
 }

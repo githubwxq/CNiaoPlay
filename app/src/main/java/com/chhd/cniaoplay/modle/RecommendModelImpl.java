@@ -7,7 +7,7 @@ import com.chhd.cniaoplay.bean.RecommendBean;
 import com.chhd.cniaoplay.http.ApiService;
 import com.chhd.cniaoplay.modle.base.BaseModel;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 /**
  * Created by CWQ on 2017/5/9.

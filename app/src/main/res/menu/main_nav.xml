@@ -8,22 +8,26 @@
             android:title="@string/app_and_game" />
     </group>
 
-    <group android:id="@+id/group_2">
-        <item
-            android:icon="@drawable/ic_movie_white_24dp"
-            android:title="@string/movie" />
-        <item
-            android:icon="@drawable/ic_library_music_white_24dp"
-            android:title="@string/music" />
-        <item
-            android:icon="@drawable/ic_library_books_white_24dp"
-            android:title="@string/book" />
-        <item
-            android:icon="@drawable/ic_fiber_new_white_24dp"
-            android:title="@string/newsstand" />
-    </group>
+    <!--<group android:id="@+id/group_2">-->
+    <!--<item-->
+    <!--android:icon="@drawable/ic_movie_white_24dp"-->
+    <!--android:title="@string/movie" />-->
+    <!--<item-->
+    <!--android:icon="@drawable/ic_library_music_white_24dp"-->
+    <!--android:title="@string/music" />-->
+    <!--<item-->
+    <!--android:icon="@drawable/ic_library_books_white_24dp"-->
+    <!--android:title="@string/book" />-->
+    <!--<item-->
+    <!--android:icon="@drawable/ic_fiber_new_white_24dp"-->
+    <!--android:title="@string/newsstand" />-->
+    <!--</group>-->
 
     <group android:id="@+id/group_3">
+        <item
+            android:id="@+id/nav_download"
+            android:icon="@drawable/ic_file_download_white_24dp"
+            android:title="@string/download" />
         <item
             android:icon="@drawable/ic_update_white_24dp"
             android:title="@string/update" />

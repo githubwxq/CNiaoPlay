@@ -2,11 +2,11 @@ package com.chhd.cniaoplay.modle;
 
 import com.chhd.cniaoplay.bean.BaseBean;
 import com.chhd.cniaoplay.bean.LoginBean;
-import com.chhd.cniaoplay.bean.request.LoginRequestBean;
+import com.chhd.cniaoplay.bean.request.LoginRequestParam;
 import com.chhd.cniaoplay.http.ApiService;
 import com.chhd.cniaoplay.modle.base.BaseModel;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 /**
  * Created by CWQ on 2017/5/28.
@@ -20,9 +20,9 @@ public class LoginModelImpl extends BaseModel implements LoginModel {
 
     @Override
     public Observable<BaseBean<LoginBean>> login(String num, String pwd) {
-        LoginRequestBean bean = new LoginRequestBean();
-        bean.setEmail(num);
-        bean.setPassword(pwd);
-        return apiService.login(bean);
+        LoginRequestParam param = new LoginRequestParam();
+        param.setEmail(num);
+        param.setPassword(pwd);
+        return apiService.login(param);
     }
 }

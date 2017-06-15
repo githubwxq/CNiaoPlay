@@ -8,18 +8,21 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 
 import com.chhd.cniaoplay.R;
+import com.chhd.cniaoplay.rx.RxErrorHandler;
 import com.chhd.cniaoplay.util.LoggerUtils;
 import com.chhd.cniaoplay.view.base.BaseView;
-import com.chhd.cniaoplay.rx.RxErrorHandler;
 import com.chhd.per_library.util.UiUtils;
 
-import rx.Subscriber;
+import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+
 
 /**
  * Created by CWQ on 2017/5/15.
  */
 
-public abstract class SimpleSubscriber<T> extends Subscriber<T> {
+public abstract class SimpleSubscriber<T> implements Observer<T> {
 
     private int delayMillis = 650;
     private long startTimeMillis;
@@ -28,15 +31,17 @@ public abstract class SimpleSubscriber<T> extends Subscriber<T> {
 
     private ProgressDialog dialog;
 
+    public SimpleSubscriber() {
+    }
+
     public SimpleSubscriber(BaseView view) {
         this.view = view;
     }
 
     @Override
-    public final void onStart() {
-        super.onStart();
+    public final void onSubscribe(@NonNull Disposable d) {
         startTimeMillis = System.currentTimeMillis();
-        if (isShowDialog()) {
+        if (isShowDialog() && view != null) {
             Context context = null;
             if (view instanceof Fragment) {
                 context = ((Fragment) view).getActivity();
@@ -79,14 +84,16 @@ public abstract class SimpleSubscriber<T> extends Subscriber<T> {
             if (dialog != null && dialog.isShowing()) {
                 dialog.dismiss();
             }
-            view.showSuccess();
+            if (view != null) {
+                view.showSuccess();
+            }
             success(t);
             after();
         }
     }
 
     @Override
-    public final void onCompleted() {
+    public final void onComplete() {
 
     }
 
@@ -108,8 +115,9 @@ public abstract class SimpleSubscriber<T> extends Subscriber<T> {
             if (dialog != null && dialog.isShowing()) {
                 dialog.dismiss();
             }
-            view.showError();
-            RxErrorHandler.handlerError(e);
+            if (view != null) {
+                view.showError();
+            }
             error(e);
             after();
         }
@@ -140,10 +148,13 @@ public abstract class SimpleSubscriber<T> extends Subscriber<T> {
     public abstract void success(T t);
 
     protected void error(Throwable e) {
+        RxErrorHandler.handlerError(e);
     }
 
     protected void after() {
-        view.after();
+        if (view != null) {
+            view.after();
+        }
     }
 
     protected boolean isShowDialog() {

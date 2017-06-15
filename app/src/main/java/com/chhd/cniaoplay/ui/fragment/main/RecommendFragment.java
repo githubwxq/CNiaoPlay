@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.chhd.cniaoplay.bean.AppInfo;
 import com.chhd.cniaoplay.bean.RecommendBean;
+import com.chhd.cniaoplay.global.App;
 import com.chhd.cniaoplay.inject.component.DaggerRecommendComponent;
 import com.chhd.cniaoplay.inject.module.HttpModule;
 import com.chhd.cniaoplay.inject.module.RecommendModule;
@@ -42,12 +43,10 @@ public class RecommendFragment extends SimpleMainFragment implements RecommendVi
     protected void lazyLoad() {
         super.lazyLoad();
 
-        DaggerRecommendComponent
-                .builder()
-                .httpModule(new HttpModule())
+        DaggerRecommendComponent.builder()
+                .appComponent(App.appComponent)
                 .recommendModule(new RecommendModule(this))
-                .build()
-                .inject(this);
+                .build().inject(this);
     }
 
     @Override

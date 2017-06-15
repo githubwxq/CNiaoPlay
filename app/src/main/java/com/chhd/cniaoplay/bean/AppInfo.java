@@ -86,6 +86,8 @@ public class AppInfo implements Parcelable {
     private String versionName;
     private int videoId;
 
+    private AppDownloadInfo appDownloadInfo;
+
     public int getAdType() {
         return adType;
     }
@@ -375,6 +377,15 @@ public class AppInfo implements Parcelable {
     }
 
 
+    public AppDownloadInfo getAppDownloadInfo() {
+        return appDownloadInfo;
+    }
+
+    public void setAppDownloadInfo(AppDownloadInfo appDownloadInfo) {
+        this.appDownloadInfo = appDownloadInfo;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -418,6 +429,7 @@ public class AppInfo implements Parcelable {
         dest.writeInt(this.versionCode);
         dest.writeString(this.versionName);
         dest.writeInt(this.videoId);
+        dest.writeParcelable(this.appDownloadInfo, flags);
     }
 
     public AppInfo() {
@@ -460,9 +472,10 @@ public class AppInfo implements Parcelable {
         this.versionCode = in.readInt();
         this.versionName = in.readString();
         this.videoId = in.readInt();
+        this.appDownloadInfo = in.readParcelable(AppDownloadInfo.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<AppInfo> CREATOR = new Parcelable.Creator<AppInfo>() {
+    public static final Creator<AppInfo> CREATOR = new Creator<AppInfo>() {
         @Override
         public AppInfo createFromParcel(Parcel source) {
             return new AppInfo(source);

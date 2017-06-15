@@ -19,8 +19,8 @@ import com.chhd.per_library.ui.base.BaseFragment;
  */
 public abstract class LazyFragment extends ProgressFragment {
 
-    private boolean hasLazyLoad;
-    private boolean hasViewCreate;
+    protected boolean hasLazyLoad;
+    protected boolean hasViewCreate;
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {

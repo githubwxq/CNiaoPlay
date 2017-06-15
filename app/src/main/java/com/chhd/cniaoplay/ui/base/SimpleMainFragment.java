@@ -25,8 +25,9 @@ import butterknife.ButterKnife;
 
 public abstract class SimpleMainFragment extends LazyFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    protected RecyclerView recyclerView;
     protected SwipeRefreshLayout refreshLayout;
+    protected RecyclerView recyclerView;
+    protected FloatingActionButton fab;
 
     @Override
     public int getContentResId() {
@@ -35,8 +36,17 @@ public abstract class SimpleMainFragment extends LazyFragment implements SwipeRe
 
     @Override
     public void findViewById() {
-        recyclerView = ButterKnife.findById(contentView, R.id.recycler_view);
         refreshLayout = ButterKnife.findById(contentView, R.id.refresh_layout);
+        recyclerView = ButterKnife.findById(contentView, R.id.recycler_view);
+        fab = ButterKnife.findById(contentView, R.id.fab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.scrollToPosition(0);
+                fab.hide();
+            }
+        });
     }
 
     @Override
@@ -46,7 +56,6 @@ public abstract class SimpleMainFragment extends LazyFragment implements SwipeRe
 
         refresh();
 
-        EventBus.getDefault().register(this);
     }
 
     protected void initView() {
@@ -64,7 +73,9 @@ public abstract class SimpleMainFragment extends LazyFragment implements SwipeRe
 
             int totalDy = recyclerView.computeVerticalScrollOffset();
             if (totalDy > 0) {
+                fab.show();
             } else {
+                fab.hide();
             }
         }
     };
@@ -86,23 +97,10 @@ public abstract class SimpleMainFragment extends LazyFragment implements SwipeRe
 
     @Override
     protected void retry() {
-        super.retry();
-        refresh();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent event) {
-        switch (event.getAction()) {
-            case Action.LOGIN:
-            case Action.LOGOUT:
-                refresh();
-                break;
+        if (hasLazyLoad) {
+            super.retry();
+            refresh();
         }
     }
+
 }

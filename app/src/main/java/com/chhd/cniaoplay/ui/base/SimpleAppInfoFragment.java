@@ -5,6 +5,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chhd.cniaoplay.bean.AppInfo;
 import com.chhd.cniaoplay.bean.PageBean;
+import com.chhd.cniaoplay.global.App;
+import com.chhd.cniaoplay.inject.component.AppComponent;
 import com.chhd.cniaoplay.inject.component.DaggerAppInfoComponent;
 import com.chhd.cniaoplay.inject.module.AppInfoModule;
 import com.chhd.cniaoplay.inject.module.HttpModule;
@@ -56,12 +58,10 @@ public abstract class SimpleAppInfoFragment extends SimpleMainFragment implement
     protected void lazyLoad() {
         super.lazyLoad();
 
-        DaggerAppInfoComponent
-                .builder()
-                .httpModule(new HttpModule())
+        DaggerAppInfoComponent.builder()
+                .appComponent(App.appComponent)
                 .appInfoModule(new AppInfoModule(this))
-                .build()
-                .inject(this);
+                .build().inject(this);
     }
 
     private SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(UiUtils.dp2px(SPACE_FOR_APP),
@@ -90,6 +90,7 @@ public abstract class SimpleAppInfoFragment extends SimpleMainFragment implement
     @Override
     protected void showErrorView() {
         if (adatper.getData().size() > 0) {
+            showContentView();
             adatper.loadMoreEnd();
         } else {
             super.showErrorView();

@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chhd.cniaoplay.bean.Category;
+import com.chhd.cniaoplay.global.App;
 import com.chhd.cniaoplay.inject.component.DaggerCategoryComponent;
 import com.chhd.cniaoplay.inject.module.CategoryModule;
 import com.chhd.cniaoplay.inject.module.HttpModule;
@@ -52,8 +53,8 @@ public class CategoryFragment extends SimpleMainFragment implements CategoryView
         recyclerView.addItemDecoration(new GridSpaceItemDecoration(3, UiUtils.dp2px(10), true));
 
         DaggerCategoryComponent.builder()
+                .appComponent(App.appComponent)
                 .categoryModule(new CategoryModule(this))
-                .httpModule(new HttpModule())
                 .build().inject(this);
     }
 

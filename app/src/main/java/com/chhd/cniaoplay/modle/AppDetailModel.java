@@ -1,10 +1,10 @@
 package com.chhd.cniaoplay.modle;
 
-import com.chhd.cniaoplay.bean.AppInfo;
 import com.chhd.cniaoplay.bean.AppInfoDetail;
 import com.chhd.cniaoplay.bean.BaseBean;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 /**
  * Created by CWQ on 2017/6/4.

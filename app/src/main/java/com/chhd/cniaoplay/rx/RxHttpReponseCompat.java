@@ -2,12 +2,18 @@ package com.chhd.cniaoplay.rx;
 
 import com.chhd.cniaoplay.bean.BaseBean;
 import com.chhd.cniaoplay.http.ApiException;
+import com.chhd.cniaoplay.util.LoggerUtils;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by CWQ on 2017/5/11.
@@ -15,33 +21,34 @@ import rx.schedulers.Schedulers;
 
 public class RxHttpReponseCompat {
 
-    public static <T> Observable.Transformer<BaseBean<T>, T> compatResult() {
+    public static <T> ObservableTransformer<BaseBean<T>, T> compatResult() {
 
-        return new Observable.Transformer<BaseBean<T>, T>() {
+        return new ObservableTransformer<BaseBean<T>, T>() {
 
             @Override
-            public Observable<T> call(Observable<BaseBean<T>> observable) {
+            public ObservableSource<T> apply(@NonNull Observable<BaseBean<T>> observable) {
 
-                return observable.flatMap(new Func1<BaseBean<T>, Observable<T>>() {
+                return observable.flatMap(new Function<BaseBean<T>, ObservableSource<T>>() {
+
                     @Override
-                    public Observable<T> call(final BaseBean<T> baseBean) {
+                    public ObservableSource<T> apply(@NonNull final BaseBean<T> baseBean) throws Exception {
+
                         if (baseBean.isRequestSuccess()) {
-                            return Observable.create(new Observable.OnSubscribe<T>() {
+
+                            return Observable.create(new ObservableOnSubscribe<T>() {
 
                                 @Override
-                                public void call(Subscriber<? super T> subscriber) {
+                                public void subscribe(@NonNull ObservableEmitter<T> subscriber) throws Exception {
                                     subscriber.onNext(baseBean.getData());
-                                    subscriber.onCompleted();
+                                    subscriber.onComplete();
                                 }
                             });
                         }
-                        return Observable.error(new ApiException(baseBean.getStatus(), baseBean.getMessage()));
 
+                        return Observable.error(new ApiException(baseBean.getStatus(), baseBean.getMessage()));
                     }
                 }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
             }
         };
-
-
     }
 }

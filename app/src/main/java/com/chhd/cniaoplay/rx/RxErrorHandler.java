@@ -26,7 +26,7 @@ public class RxErrorHandler {
         return e;
     }
 
-    public static void handlerApiEx(ApiException apiException) {
+    private static void handlerApiEx(ApiException apiException) {
         switch (apiException.getCode()) {
             case 10010:// token 丢失
             case 10011:// token 错误或丢失

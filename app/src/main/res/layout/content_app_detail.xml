@@ -76,7 +76,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="right"
                 android:layout_marginLeft="@dimen/margin_tiny"
-                android:background="@drawable/selector_btn_style_green"
+                android:background="@drawable/selector_btn_green"
                 android:text="@string/download"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_small" />

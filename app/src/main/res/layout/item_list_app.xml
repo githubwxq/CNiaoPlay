@@ -67,14 +67,31 @@
 
         </LinearLayout>
 
-        <Button
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="@dimen/margin_tiny"
-            android:background="@drawable/selector_btn_style_green"
-            android:text="@string/download"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:background="@drawable/selector_btn_green"
+                android:text="@string/download"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_small" />
+
+            <ImageView
+                android:id="@+id/iv_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/btn"
+                android:foreground="?attr/selectableItemBackground"
+                android:src="@drawable/ic_more_vert_black_18dp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 

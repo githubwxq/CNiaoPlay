@@ -8,7 +8,8 @@ import com.chhd.cniaoplay.rx.RxHttpReponseCompat;
 import com.chhd.cniaoplay.rx.subscriber.SimpleSubscriber;
 import com.chhd.cniaoplay.view.AppInfoView;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 /**
  * Created by CWQ on 2017/5/26.

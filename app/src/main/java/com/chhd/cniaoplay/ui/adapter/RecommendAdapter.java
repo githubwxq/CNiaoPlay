@@ -1,6 +1,8 @@
 package com.chhd.cniaoplay.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +17,8 @@ import com.bumptech.glide.Glide;
 import com.chhd.cniaoplay.R;
 import com.chhd.cniaoplay.bean.RecommendBean;
 import com.chhd.cniaoplay.global.Constant;
+import com.chhd.cniaoplay.ui.activity.SubjectActivity;
+import com.chhd.cniaoplay.ui.base.SimpleActivity;
 import com.chhd.cniaoplay.ui.card.ShadowTransformer;
 import com.chhd.cniaoplay.ui.fragment.main.RecommendFragment;
 import com.chhd.per_library.ui.decoration.SpaceItemDecoration;
@@ -28,6 +32,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by CWQ on 2017/5/23.
@@ -99,7 +104,8 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         } else if (viewHolder.getItemViewType() == ITEM_APP) {
             AppHolder holder = (AppHolder) viewHolder;
             holder.tvTitle.setText(context.getText(R.string.hot_app));
-            AppAdatper adapter = new AppAdatper(recommendBean.getRecommendApps());
+            AppAdatper adapter = AppAdatper.builder().build();
+            adapter.setNewData(recommendBean.getRecommendApps());
             holder.rvApp.setAdapter(adapter);
             holder.rvApp.setLayoutManager(new LinearLayoutManager(fragment.getActivity()));
             holder.rvApp.removeItemDecoration(spaceItemDecoration);
@@ -107,7 +113,8 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         } else if (viewHolder.getItemViewType() == ITEM_GAME) {
             AppHolder holder = (AppHolder) viewHolder;
             holder.tvTitle.setText(context.getText(R.string.hot_game));
-            AppAdatper adapter = new AppAdatper(recommendBean.getRecommendGames());
+            AppAdatper adapter = AppAdatper.builder().build();
+            adapter.setNewData(recommendBean.getRecommendGames());
             holder.rvApp.setAdapter(adapter);
             holder.rvApp.setLayoutManager(new LinearLayoutManager(fragment.getActivity()));
             holder.rvApp.removeItemDecoration(spaceItemDecoration);
@@ -180,6 +187,16 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public NavHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        @OnClick({R.id.nav_theme})
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.nav_theme:
+                    Intent intent = new Intent(v.getContext(), SubjectActivity.class);
+                    v.getContext().startActivity(intent);
+                    break;
+            }
         }
     }
 

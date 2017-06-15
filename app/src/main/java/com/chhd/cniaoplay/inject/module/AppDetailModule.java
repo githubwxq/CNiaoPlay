@@ -23,11 +23,6 @@ public class AppDetailModule {
     }
 
     @Provides
-    public AppDetailPresenter providePresenter(AppDetailView view, AppDetailModel model) {
-        return new AppDetailPresenterImpl(view, model);
-    }
-
-    @Provides
     public AppDetailView provideView() {
         return view;
     }

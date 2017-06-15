@@ -3,18 +3,17 @@ package com.chhd.cniaoplay.ui.activity;
 import android.Manifest;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.chhd.cniaoplay.R;
+import com.chhd.cniaoplay.global.App;
+import com.chhd.cniaoplay.inject.component.AppComponent;
 import com.chhd.cniaoplay.inject.component.DaggerLoginComponent;
 import com.chhd.cniaoplay.inject.module.HttpModule;
 import com.chhd.cniaoplay.inject.module.LoginModule;
@@ -23,18 +22,20 @@ import com.chhd.cniaoplay.ui.base.SimpleActivity;
 import com.chhd.cniaoplay.view.LoginView;
 import com.chhd.per_library.util.AppUtils;
 import com.chhd.per_library.util.SpUtils;
-import com.jakewharton.rxbinding.view.RxView;
-import com.jakewharton.rxbinding.widget.RxTextView;
-import com.tbruyelle.rxpermissions.RxPermissions;
+import com.jakewharton.rxbinding2.InitialValueObservable;
+import com.jakewharton.rxbinding2.view.RxView;
+import com.jakewharton.rxbinding2.widget.RxTextView;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Observable;
-import rx.functions.Action1;
-import rx.functions.Func2;
+import io.reactivex.Observable;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Consumer;
 
 public class LoginActivity extends SimpleActivity implements LoginView {
 
@@ -61,7 +62,7 @@ public class LoginActivity extends SimpleActivity implements LoginView {
         ButterKnife.bind(this);
 
         DaggerLoginComponent.builder()
-                .httpModule(new HttpModule())
+                .appComponent(App.appComponent)
                 .loginModule(new LoginModule(this))
                 .build().inject(this);
     }
@@ -69,9 +70,9 @@ public class LoginActivity extends SimpleActivity implements LoginView {
     private void initView() {
 
         new RxPermissions(this).request(Manifest.permission.READ_PHONE_STATE)
-                .subscribe(new Action1<Boolean>() {
+                .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void call(Boolean aBoolean) {
+                    public void accept(@NonNull Boolean aBoolean) throws Exception {
                         if (aBoolean) {
                             String number = AppUtils.getMobliePhoneNumber();
                             textNumber.getEditText().setText(number);
@@ -93,19 +94,18 @@ public class LoginActivity extends SimpleActivity implements LoginView {
             }
         });
 
-        Observable<CharSequence> obNum = RxTextView.textChanges(textNumber.getEditText());
-        Observable<CharSequence> obPwd = RxTextView.textChanges(textPassword.getEditText());
-        Observable.combineLatest(obNum, obPwd, new Func2<CharSequence, CharSequence, Boolean>() {
+        InitialValueObservable<CharSequence> obNum = RxTextView.textChanges(textNumber.getEditText());
+        InitialValueObservable<CharSequence> obPwd = RxTextView.textChanges(textPassword.getEditText());
+        Observable.combineLatest(obNum, obPwd, new BiFunction<CharSequence, CharSequence, Boolean>() {
 
             @Override
-            public Boolean call(CharSequence num, CharSequence pwd) {
+            public Boolean apply(@NonNull CharSequence num, @NonNull CharSequence pwd) throws Exception {
                 return num.toString().trim().length() > 0 && pwd.toString().trim().length() > 0;
             }
-        }).subscribe(new Action1<Boolean>() {
-
+        }).subscribe(new Consumer<Boolean>() {
             @Override
-            public void call(Boolean aBoolean) {
-                RxView.enabled(btnLogin).call(aBoolean);
+            public void accept(@NonNull Boolean aBoolean) throws Exception {
+                RxView.enabled(btnLogin).accept(aBoolean);
             }
         });
     }

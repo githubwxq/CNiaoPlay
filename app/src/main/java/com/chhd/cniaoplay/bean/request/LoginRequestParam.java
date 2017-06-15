@@ -4,7 +4,7 @@ package com.chhd.cniaoplay.bean.request;
  * Created by CWQ on 2017/5/28.
  */
 
-public class LoginRequestBean {
+public class LoginRequestParam {
 
     private String email;
 

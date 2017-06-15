@@ -4,25 +4,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
 import com.chhd.cniaoplay.R;
 import com.chhd.cniaoplay.bean.AppInfoDetail;
 import com.chhd.cniaoplay.bean.MessageEvent;
 import com.chhd.cniaoplay.global.Action;
-import com.chhd.cniaoplay.http.ApiService;
+import com.chhd.cniaoplay.global.App;
 import com.chhd.cniaoplay.inject.component.DaggerAppDetailComponent;
 import com.chhd.cniaoplay.inject.module.AppDetailModule;
-import com.chhd.cniaoplay.inject.module.HttpModule;
-import com.chhd.cniaoplay.presenter.AppDetailPresenter;
+import com.chhd.cniaoplay.presenter.AppDetailPresenterImpl;
 import com.chhd.cniaoplay.ui.adapter.AppDetailAppAdapter;
 import com.chhd.cniaoplay.ui.adapter.AppDetailPicAdapter;
 import com.chhd.cniaoplay.ui.base.ProgressFragment;
-import com.chhd.cniaoplay.util.LoggerUtils;
 import com.chhd.cniaoplay.view.AppDetailView;
 import com.chhd.per_library.ui.decoration.SpaceItemDecoration;
 import com.chhd.per_library.util.UiUtils;
@@ -46,7 +39,7 @@ import butterknife.ButterKnife;
 public class AppDetailFragment extends ProgressFragment implements AppDetailView {
 
     @Inject
-    AppDetailPresenter presenter;
+    AppDetailPresenterImpl presenter;
 
     private int id;
     private RecyclerView rvPic;
@@ -74,8 +67,8 @@ public class AppDetailFragment extends ProgressFragment implements AppDetailView
         super.onActivityCreated(savedInstanceState);
 
         DaggerAppDetailComponent.builder()
+                .appComponent(App.appComponent)
                 .appDetailModule(new AppDetailModule(this))
-                .httpModule(new HttpModule())
                 .build().inject(this);
 
         presenter.requestAppDetailData(id);

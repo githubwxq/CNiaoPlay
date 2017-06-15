@@ -33,6 +33,12 @@ public class LoggerUtils implements Constant {
         }
     }
 
+    public static void w(String message) {
+        if (true) {
+            Logger.w(message);
+        }
+    }
+
     public static void e(Throwable throwable) {
         if (true) {
             Logger.e(throwable, "error");
