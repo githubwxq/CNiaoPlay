@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:layout="@layout/preference_category"
+        android:title="@string/install" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="install_intelligent"
+        android:layout="@layout/preference_item"
+        android:summary="支持Android 4.1以上，无需Root权限"
+        android:title="智能安装" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:dependency="install_intelligent"
+        android:key="install_auto"
+        android:layout="@layout/preference_item"
+        android:summary="仅限Root用户"
+        android:title="自动安装" />
+
+    <Preference android:layout="@layout/preference_space" />
+
+    <PreferenceCategory
+        android:layout="@layout/preference_category"
+        android:title="基本设置" />
+
+    <Preference
+        android:layout="@layout/preference_item"
+        android:summary="0.00KB"
+        android:title="缓存清理" />
+
+    <Preference
+        android:layout="@layout/preference_item"
+        android:summary="默认目录"
+        android:title="安装包下载目录" />
+
+    <Preference android:layout="@layout/preference_space" />
+
+    <Preference
+        android:key="switch_account"
+        android:layout="@layout/preference_item"
+        android:title="切换帐号" />
+
+</PreferenceScreen>

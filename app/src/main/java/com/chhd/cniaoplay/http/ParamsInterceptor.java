@@ -39,7 +39,8 @@ public class ParamsInterceptor implements Interceptor {
         HashMap<String, Object> rootMap = new HashMap<>();
 
         HashMap<String, Object> commomParamsMap = new HashMap<>();
-        commomParamsMap.put("imei", DeviceUtils.getIMEI());
+        commomParamsMap.put("imei", "5284047f4ffb4e04824a2fd1d1f0cd62");
+//        commomParamsMap.put("imei", DeviceUtils.getIMEI());
         commomParamsMap.put("model", DeviceUtils.getModel());
         commomParamsMap.put("la", DeviceUtils.getLanguage());
         commomParamsMap.put("os", DeviceUtils.getBuildVersionIncremental());

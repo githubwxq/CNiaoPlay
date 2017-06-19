@@ -1,4 +1,4 @@
-package com.chhd.cniaoplay.rx;
+package com.chhd.cniaoplay.http.rx;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;

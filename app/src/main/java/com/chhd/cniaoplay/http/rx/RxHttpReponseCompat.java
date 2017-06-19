@@ -1,8 +1,7 @@
-package com.chhd.cniaoplay.rx;
+package com.chhd.cniaoplay.http.rx;
 
 import com.chhd.cniaoplay.bean.BaseBean;
 import com.chhd.cniaoplay.http.ApiException;
-import com.chhd.cniaoplay.util.LoggerUtils;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;

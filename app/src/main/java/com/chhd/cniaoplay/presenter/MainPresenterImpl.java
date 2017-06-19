@@ -5,15 +5,14 @@ import com.chhd.cniaoplay.bean.InstalledApp;
 import com.chhd.cniaoplay.bean.request.AppUpdateParam;
 import com.chhd.cniaoplay.biz.AppBiz;
 import com.chhd.cniaoplay.modle.MainModel;
-import com.chhd.cniaoplay.rx.RxHttpReponseCompat;
-import com.chhd.cniaoplay.rx.subscriber.SimpleSubscriber;
+import com.chhd.cniaoplay.http.rx.RxHttpReponseCompat;
+import com.chhd.cniaoplay.http.subscriber.SimpleSubscriber;
 import com.chhd.cniaoplay.view.MainView;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import dagger.Module;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.annotations.NonNull;

@@ -2,10 +2,10 @@ package com.chhd.cniaoplay.presenter;
 
 import com.chhd.cniaoplay.bean.SearchResult;
 import com.chhd.cniaoplay.modle.SearchModel;
-import com.chhd.cniaoplay.rx.RxHttpReponseCompat;
-import com.chhd.cniaoplay.rx.subscriber.SimpleSubscriber;
-import com.chhd.cniaoplay.util.LoggerUtils;
+import com.chhd.cniaoplay.http.rx.RxHttpReponseCompat;
+import com.chhd.cniaoplay.http.subscriber.SimpleSubscriber;
 import com.chhd.cniaoplay.view.SearchView;
+import com.chhd.per_library.util.SpUtils;
 
 import java.util.List;
 
@@ -35,13 +35,15 @@ public class SearchPresenterImpl implements SearchPresenter {
 
                     @Override
                     public void success(List<String> strings) {
-                        LoggerUtils.i("strings: " + strings);
+                        view.showSearchSuggestData(strings);
                     }
                 });
     }
 
     @Override
     public void requestSearchResultData(String keyword) {
+        saveSearchHistory(keyword);
+
         model
                 .getSearchResultData(keyword)
                 .compose(RxHttpReponseCompat.<SearchResult>compatResult())
@@ -49,8 +51,19 @@ public class SearchPresenterImpl implements SearchPresenter {
 
                     @Override
                     public void success(SearchResult searchResult) {
-                        LoggerUtils.i("size: " + searchResult.getListApp().size());
+                        view.showSearchResultData(searchResult);
                     }
                 });
     }
+
+    private void saveSearchHistory(String keyword) {
+        String history = SpUtils.getString("searchHistory");
+        if (history.length() > 0) {
+            history = history + "," + keyword;
+        } else {
+            history = keyword;
+        }
+        SpUtils.putString("searchHistory", history);
+    }
+
 }

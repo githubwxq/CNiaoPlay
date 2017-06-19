@@ -5,8 +5,8 @@ import com.chhd.cniaoplay.bean.MessageEvent;
 import com.chhd.cniaoplay.global.Action;
 import com.chhd.cniaoplay.global.App;
 import com.chhd.cniaoplay.modle.LoginModel;
-import com.chhd.cniaoplay.rx.RxHttpReponseCompat;
-import com.chhd.cniaoplay.rx.subscriber.SimpleSubscriber;
+import com.chhd.cniaoplay.http.rx.RxHttpReponseCompat;
+import com.chhd.cniaoplay.http.subscriber.SimpleSubscriber;
 import com.chhd.cniaoplay.view.LoginView;
 
 import org.greenrobot.eventbus.EventBus;

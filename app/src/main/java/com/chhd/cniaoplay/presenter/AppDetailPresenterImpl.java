@@ -2,8 +2,8 @@ package com.chhd.cniaoplay.presenter;
 
 import com.chhd.cniaoplay.bean.AppInfoDetail;
 import com.chhd.cniaoplay.modle.AppDetailModel;
-import com.chhd.cniaoplay.rx.RxHttpReponseCompat;
-import com.chhd.cniaoplay.rx.subscriber.SimpleSubscriber;
+import com.chhd.cniaoplay.http.rx.RxHttpReponseCompat;
+import com.chhd.cniaoplay.http.subscriber.SimpleSubscriber;
 import com.chhd.cniaoplay.view.AppDetailView;
 
 import javax.inject.Inject;

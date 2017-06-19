@@ -1,8 +1,8 @@
 package com.chhd.cniaoplay.presenter;
 
 import com.chhd.cniaoplay.bean.InstalledApp;
-import com.chhd.cniaoplay.rx.RxHelper;
-import com.chhd.cniaoplay.rx.subscriber.SimpleSubscriber;
+import com.chhd.cniaoplay.http.rx.RxHelper;
+import com.chhd.cniaoplay.http.subscriber.SimpleSubscriber;
 import com.chhd.cniaoplay.ui.DownloadController;
 import com.chhd.cniaoplay.bean.AppInfo;
 import com.chhd.cniaoplay.modle.DownloadManagerModel;

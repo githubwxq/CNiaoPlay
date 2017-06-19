@@ -76,9 +76,7 @@ public class SubjectDetailActivity extends ProgressActivity implements SubjectDe
         adatper.setNewData(subjectDetail.getListApp());
         recyclerView.setAdapter(adatper);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(spaceItemDecoration);
+        recyclerView.addItemDecoration(appSpaceItemDecoration);
     }
 
-    private SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(UiUtils.dp2px(SPACE_FOR_APP),
-            SpaceItemDecoration.VERTICAL, true);
 }

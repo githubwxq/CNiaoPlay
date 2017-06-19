@@ -40,7 +40,7 @@ public abstract class SimpleAppInfoFragment extends SimpleMainFragment implement
             adatper.setOnLoadMoreListener(loadMoreListener, recyclerView);
             recyclerView.setAdapter(adatper);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            recyclerView.addItemDecoration(spaceItemDecoration);
+            recyclerView.addItemDecoration(appSpaceItemDecoration);
         }
     }
 
@@ -63,9 +63,6 @@ public abstract class SimpleAppInfoFragment extends SimpleMainFragment implement
                 .appInfoModule(new AppInfoModule(this))
                 .build().inject(this);
     }
-
-    private SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(UiUtils.dp2px(SPACE_FOR_APP),
-            SpaceItemDecoration.VERTICAL, true);
 
     @Override
     public void onRefresh() {

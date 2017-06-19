@@ -108,8 +108,8 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             adapter.setNewData(recommendBean.getRecommendApps());
             holder.rvApp.setAdapter(adapter);
             holder.rvApp.setLayoutManager(new LinearLayoutManager(fragment.getActivity()));
-            holder.rvApp.removeItemDecoration(spaceItemDecoration);
-            holder.rvApp.addItemDecoration(spaceItemDecoration);
+            holder.rvApp.removeItemDecoration(appSpaceItemDecoration);
+            holder.rvApp.addItemDecoration(appSpaceItemDecoration);
         } else if (viewHolder.getItemViewType() == ITEM_GAME) {
             AppHolder holder = (AppHolder) viewHolder;
             holder.tvTitle.setText(context.getText(R.string.hot_game));
@@ -117,13 +117,10 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             adapter.setNewData(recommendBean.getRecommendGames());
             holder.rvApp.setAdapter(adapter);
             holder.rvApp.setLayoutManager(new LinearLayoutManager(fragment.getActivity()));
-            holder.rvApp.removeItemDecoration(spaceItemDecoration);
-            holder.rvApp.addItemDecoration(spaceItemDecoration);
+            holder.rvApp.removeItemDecoration(appSpaceItemDecoration);
+            holder.rvApp.addItemDecoration(appSpaceItemDecoration);
         }
     }
-
-    private SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(UiUtils.dp2px(SPACE_FOR_APP),
-            SpaceItemDecoration.VERTICAL, true);
 
     @Override
     public int getItemCount() {

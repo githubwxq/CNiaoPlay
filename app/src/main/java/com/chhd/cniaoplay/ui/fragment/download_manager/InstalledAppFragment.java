@@ -56,10 +56,10 @@ public class InstalledAppFragment extends SimpleDownloadManagerFragment {
             String packageName = intent.getDataString().split(":")[1];
 
             InstalledAppAdapter adapter = (InstalledAppAdapter) recyclerView.getAdapter();
-//            for (Iterator iterator = adapter.getData().iterator(); iterator.hasNext(); ) {
+//            for (Iterator iterator = adapter.getCacheData().iterator(); iterator.hasNext(); ) {
 //                InstalledApp app = (InstalledApp) iterator.next();
 //                if (app.getPackageName().equals(packageName)) {
-//                    int position = adapter.getData().indexOf(app);
+//                    int position = adapter.getCacheData().indexOf(app);
 //                    iterator.remove();
 //                    adapter.notifyItemRemoved(position);
 //                }

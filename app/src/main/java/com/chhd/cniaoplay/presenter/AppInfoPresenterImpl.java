@@ -4,8 +4,8 @@ import com.chhd.cniaoplay.bean.AppInfo;
 import com.chhd.cniaoplay.bean.BaseBean;
 import com.chhd.cniaoplay.bean.PageBean;
 import com.chhd.cniaoplay.modle.AppInfoModel;
-import com.chhd.cniaoplay.rx.RxHttpReponseCompat;
-import com.chhd.cniaoplay.rx.subscriber.SimpleSubscriber;
+import com.chhd.cniaoplay.http.rx.RxHttpReponseCompat;
+import com.chhd.cniaoplay.http.subscriber.SimpleSubscriber;
 import com.chhd.cniaoplay.view.AppInfoView;
 
 import io.reactivex.Observable;

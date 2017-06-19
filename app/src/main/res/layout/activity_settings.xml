@@ -9,25 +9,12 @@
 
     <include layout="@layout/app_bar_layout" />
 
-    <LinearLayout
+    <ListView
+        android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_big"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <TextView
-            android:id="@+id/switch_account"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/white"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:gravity="center"
-            android:text="@string/switch_account"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="@dimen/text_size_normal" />
-
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:divider="@color/line_color"
+        android:dividerHeight="0.5dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>

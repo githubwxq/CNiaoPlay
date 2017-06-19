@@ -1,4 +1,4 @@
-package com.chhd.cniaoplay.rx.subscriber;
+package com.chhd.cniaoplay.http.subscriber;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 
 import com.chhd.cniaoplay.R;
-import com.chhd.cniaoplay.rx.RxErrorHandler;
+import com.chhd.cniaoplay.http.rx.RxErrorHandler;
 import com.chhd.cniaoplay.util.LoggerUtils;
 import com.chhd.cniaoplay.view.base.BaseView;
 import com.chhd.per_library.util.UiUtils;
@@ -24,7 +24,7 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class SimpleSubscriber<T> implements Observer<T> {
 
-    private int delayMillis = 650;
+    private int delayMillis = 0;
     private long startTimeMillis;
 
     private BaseView view;

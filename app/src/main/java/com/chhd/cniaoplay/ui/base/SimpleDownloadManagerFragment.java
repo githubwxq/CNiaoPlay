@@ -63,8 +63,7 @@ public abstract class SimpleDownloadManagerFragment extends ProgressFragment imp
         adapter.setNewData(appInfos);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.addItemDecoration(new SpaceItemDecoration(UiUtils.dp2px(SPACE_FOR_APP),
-                SpaceItemDecoration.VERTICAL, true));
+        recyclerView.addItemDecoration(appSpaceItemDecoration);
     }
 
     @Override
@@ -73,7 +72,6 @@ public abstract class SimpleDownloadManagerFragment extends ProgressFragment imp
         adapter.setNewData(apps);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.addItemDecoration(new SpaceItemDecoration(UiUtils.dp2px(SPACE_FOR_APP),
-                SpaceItemDecoration.VERTICAL, true));
+        recyclerView.addItemDecoration(appSpaceItemDecoration);
     }
 }

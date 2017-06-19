@@ -59,7 +59,6 @@ public class AppDetailFragment extends ProgressFragment implements AppDetailView
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         id = getArguments().getInt("id");
-        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -112,22 +111,6 @@ public class AppDetailFragment extends ProgressFragment implements AppDetailView
                 , false));
         rvRelate.addItemDecoration(new SpaceItemDecoration(UiUtils.dp2px(0),
                 SpaceItemDecoration.HORIZONTAL));
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent event) {
-        switch (event.getAction()) {
-            case Action.LOGIN:
-            case Action.LOGOUT:
-                presenter.requestAppDetailData(id);
-                break;
-        }
     }
 
     @Override

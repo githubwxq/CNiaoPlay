@@ -1,7 +1,11 @@
 package com.chhd.cniaoplay.ui.activity;
 
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceActivity;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.chhd.cniaoplay.R;
@@ -9,25 +13,50 @@ import com.chhd.cniaoplay.bean.MessageEvent;
 import com.chhd.cniaoplay.global.Action;
 import com.chhd.cniaoplay.global.App;
 import com.chhd.cniaoplay.ui.base.SimpleActivity;
+import com.chhd.per_library.ui.base.AppCompatPreferenceActivity;
+import com.chhd.per_library.util.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SettingsActivity extends SimpleActivity {
+public class SettingsActivity extends AppCompatPreferenceActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.switch_account)
-    View switchAccount;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+
+        addPreferencesFromResource(R.xml.pref_settings);
+
+        ButterKnife.bind(this);
 
         initActionBar();
+
+        Preference preference = getPreferenceManager().findPreference("switch_account");
+        preference.setOnPreferenceClickListener(onPreferenceClickListener);
     }
+
+    private Preference.OnPreferenceClickListener onPreferenceClickListener = new Preference
+            .OnPreferenceClickListener() {
+
+        @Override
+        public boolean onPreferenceClick(Preference preference) {
+            switch (preference.getKey()) {
+                case "switch_account":
+                    App.clearLoginInfo();
+                    finish();
+                    EventBus.getDefault().post(new MessageEvent(Action.LOGOUT));
+                    break;
+            }
+            return false;
+        }
+    };
 
     private void initActionBar() {
         setSupportActionBar(toolbar);
@@ -36,27 +65,12 @@ public class SettingsActivity extends SimpleActivity {
     }
 
     @Override
-    public int getLayoutResID() {
-        return R.layout.activity_settings;
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        int visibility = App.user == null ? View.GONE : View.VISIBLE;
-        switchAccount.setVisibility(visibility);
-    }
-
-    @OnClick({R.id.switch_account})
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.switch_account:
-                App.clearLoginInfo();
-                finish();
-                EventBus.getDefault().post(new MessageEvent(Action.LOGOUT));
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
                 break;
         }
+        return super.onOptionsItemSelected(item);
     }
-
 }
