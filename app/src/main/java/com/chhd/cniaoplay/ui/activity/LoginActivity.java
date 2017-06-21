@@ -1,6 +1,8 @@
 package com.chhd.cniaoplay.ui.activity;
 
 import android.Manifest;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -65,6 +67,8 @@ public class LoginActivity extends SimpleActivity implements LoginView {
                 .appComponent(App.appComponent)
                 .loginModule(new LoginModule(this))
                 .build().inject(this);
+
+
     }
 
     private void initView() {
@@ -147,11 +151,16 @@ public class LoginActivity extends SimpleActivity implements LoginView {
 
     }
 
-    @OnClick({R.id.btn_login})
+    @OnClick({R.id.btn_login, R.id.btn_register})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login:
                 attemptLogin();
+                break;
+            case R.id.btn_register:
+                Uri uri = Uri.parse("http://www.cniao5.com/auth/user/reg.html");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
                 break;
         }
     }

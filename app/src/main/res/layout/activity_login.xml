@@ -85,7 +85,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/forget_password"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/btn_register"
@@ -96,6 +97,15 @@
                     android:textColor="@color/colorAccent" />
 
             </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_xlarge"
+                android:gravity="center"
+                android:text="请登录菜鸟窝帐号"
+                android:textColor="@color/def_text_light"
+                android:textSize="@dimen/text_size_small" />
 
         </LinearLayout>
 
