@@ -51,5 +51,4 @@ public class LoggerUtils implements Constant {
         }
     }
 
-
 }

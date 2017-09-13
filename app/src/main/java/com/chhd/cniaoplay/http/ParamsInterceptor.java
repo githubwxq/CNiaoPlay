@@ -1,6 +1,7 @@
 package com.chhd.cniaoplay.http;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.chhd.cniaoplay.global.App;
 import com.chhd.cniaoplay.util.LoggerUtils;
@@ -73,6 +74,7 @@ public class ParamsInterceptor implements Interceptor {
             request = request.newBuilder().url(url).build();
         } else if (request.method().equals("POST")) {
             RequestBody requestBody = request.body();
+            Log.i("debug", "" + requestBody);
             if (requestBody instanceof FormBody) {
                 FormBody body = (FormBody) requestBody;
                 FormBody.Builder builder = new FormBody.Builder();

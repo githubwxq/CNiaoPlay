@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 
 import com.chhd.per_library.ui.base.BaseFragment;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * Created by CWQ on 2017/4/9.
  */
@@ -38,6 +42,17 @@ public abstract class LazyFragment extends ProgressFragment {
         if (getUserVisibleHint() && !hasLazyLoad) {
             lazyLoad();
             hasLazyLoad = true;
+
+            Map<String, String> map = new TreeMap<>();
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                System.out.println(entry.getKey() + "" + entry.getValue());
+            }
+
+            Iterator iterator = map.keySet().iterator();
+            while (iterator.hasNext()) {
+                String key = iterator.next().toString();
+                String value = map.get(key);
+            }
         }
     }
 

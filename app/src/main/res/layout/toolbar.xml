@@ -7,5 +7,4 @@
     android:background="?attr/colorPrimary"
     app:theme="@style/AppTheme.AppBarOverlay">
 
-
 </android.support.v7.widget.Toolbar>
