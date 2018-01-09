@@ -102,6 +102,8 @@ public class SearchActivity extends SimpleActivity implements com.chhd.cniaoplay
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.search);
+
+        SearchView searchView;
     }
 
     @Override
