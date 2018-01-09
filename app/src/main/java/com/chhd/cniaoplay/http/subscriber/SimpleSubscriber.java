@@ -24,9 +24,6 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class SimpleSubscriber<T> implements Observer<T> {
 
-    private int delayMillis = 0;
-    private long startTimeMillis;
-
     private BaseView view;
 
     private ProgressDialog dialog;
@@ -40,7 +37,6 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
 
     @Override
     public final void onSubscribe(@NonNull Disposable d) {
-        startTimeMillis = System.currentTimeMillis();
         if (isShowDialog() && view != null) {
             Context context = null;
             if (view instanceof Fragment) {
@@ -65,81 +61,39 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
 
     @Override
     public void onNext(T t) {
-        delayExcute(new NextRun(t));
+        if (t instanceof String) {
+            LoggerUtils.i("json: " + t);
+        }
+        if (view != null) {
+            view.showSuccess();
+        }
+        success(t);
     }
 
-    private class NextRun implements Runnable {
-
-        private T t;
-
-        public NextRun(T t) {
-            this.t = t;
-        }
-
-        @Override
-        public void run() {
-            if (t instanceof String) {
-                LoggerUtils.i("json: " + t);
-            }
-            if (dialog != null && dialog.isShowing()) {
-                dialog.dismiss();
-            }
-            if (view != null) {
-                view.showSuccess();
-            }
-            success(t);
-            after();
-        }
-    }
 
     @Override
     public final void onComplete() {
-
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
+        if (view != null) {
+            view.showSuccess();
+        }
+        after();
     }
 
     @Override
     public final void onError(Throwable e) {
-        delayExcute(new ErrorRun(e));
-    }
-
-    private class ErrorRun implements Runnable {
-
-        private Throwable e;
-
-        public ErrorRun(Throwable e) {
-            this.e = e;
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
         }
-
-        @Override
-        public void run() {
-            if (dialog != null && dialog.isShowing()) {
-                dialog.dismiss();
-            }
-            if (view != null) {
-                view.showError();
-            }
-            error(e);
-            after();
+        if (view != null) {
+            view.showError();
         }
+        error(e);
+        after();
     }
 
-    private void delayExcute(final Runnable r) {
-        long timeDif = getTimeDif();
-        if (timeDif > delayMillis) {
-            new Handler().post(r);
-        } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    new Handler().post(r);
-                }
-            }, delayMillis - timeDif);
-        }
-    }
-
-    private long getTimeDif() {
-        return System.currentTimeMillis() - startTimeMillis;
-    }
 
     public void before() {
 
